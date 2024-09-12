@@ -1,4 +1,4 @@
-package exer1;
+package exercicio01;
 
 public class Motor {
     private int potencia;
