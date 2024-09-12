@@ -1,4 +1,4 @@
-package exer1;
+package exercicio1;
 
 public class Carro {
     private Motor motor;
