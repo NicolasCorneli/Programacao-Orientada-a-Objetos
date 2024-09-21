@@ -1,5 +1,3 @@
-package exercicio1;
-
 public class Usuario {
     private String nome;
     private int id;
@@ -7,7 +5,6 @@ public class Usuario {
     public Usuario(String nome, int id){
         this.nome = nome;
         this.id = id;
-        
     }
 
     public String getNome() {
