@@ -1,16 +1,12 @@
-package exercicio1;
-
 public class Livro {
     private String titulo;
     private String autor;
     private int isbn;
-    public int length;
 
-    public Livro(String titulo,String autor,int isbn){
+    public Livro(String titulo, String autor, int isbn){
         this.titulo = titulo;
         this.autor = autor;
         this.isbn = isbn;
-        
     }
 
     public String getTitulo() {
@@ -37,5 +33,4 @@ public class Livro {
         this.isbn = isbn;
     }
     
-
 }
