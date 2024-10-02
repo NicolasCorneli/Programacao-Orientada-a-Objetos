@@ -1,4 +1,4 @@
-package exercicio03
+package exercicio03;
 
 public class Animal{
     protected String animal;
