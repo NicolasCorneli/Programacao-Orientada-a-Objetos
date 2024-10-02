@@ -1,3 +1,4 @@
+package exercicio05;
 public class Eletronico extends Produto{
     private boolean garantia;
 
