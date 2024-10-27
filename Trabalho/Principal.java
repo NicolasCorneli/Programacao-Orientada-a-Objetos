@@ -18,8 +18,10 @@ public class Principal {
         gestaoFrota.adicionarEletroposto(eletroposto1);
 
         // Criando e realizando viagem
-        Viagem viagem = new Viagem(motorista1, carroCompacto, 150, "Rio de Janeiro");
-        viagem.adicionarParada(eletroposto1);
+        Viagem viagem = new Viagem(motorista1, carroCompacto, 190, "Rio de Janeiro");
         viagem.realizarViagem();
+
+        gestaoFrota.veiculosComBaixaAutonomia();
+        
     }
 }
