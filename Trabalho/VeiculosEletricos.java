@@ -112,11 +112,8 @@ public class VeiculosEletricos {
         this.autonomiaAtual -= km;
     }
 
-    public boolean precisaRecarregar(VeiculosEletricos v){
-        if (v.getAutonomiaAtual() <= (v.getAutonomiaAtual() * 0.2)){
-            return true;
-        }else{
-            return false;
-        }
+    public boolean precisaRecarregar() {
+        return this.autonomiaAtual <= (this.autonomiaMaxima * 0.2);
     }
+    
 }
