@@ -23,17 +23,17 @@ public class GestaoFrota {
         listaEletropostos.add(eletroposto);
     }
 
-     public void veiculosComBaixaAutonomia() {
-        ArrayList<VeiculosEletricos> veiculosBaixaAutonomia = new ArrayList<>();
-        for (VeiculosEletricos veiculo : listaVeiculos) {
-            if (veiculo.precisaRecarregar(veiculo)) {
-                veiculosBaixaAutonomia.add(veiculo);
-            }
-        }
-        for (VeiculosEletricos veiculo : veiculosBaixaAutonomia) {
-            System.out.println("Veículo com baixa autonomia: "+ veiculo.getModelo() + " ID: " +veiculo.getId() + ", Autonomia atual: " + veiculo.getAutonomiaAtual());
+    public void veiculosComBaixaAutonomia() {
+    ArrayList<VeiculosEletricos> veiculosBaixaAutonomia = new ArrayList<>();
+    for (VeiculosEletricos veiculo : listaVeiculos) {
+        if (veiculo.precisaRecarregar()) {
+            veiculosBaixaAutonomia.add(veiculo);
         }
     }
+    for (VeiculosEletricos veiculo : veiculosBaixaAutonomia) {
+        System.out.println("Veículo com baixa autonomia: " + veiculo.getModelo() + " ID: " + veiculo.getId() + ", Autonomia atual: " + veiculo.getAutonomiaAtual());
+    }
+}
 
     public ArrayList<Motorista> getListaMotoristas() {
         return listaMotoristas;
