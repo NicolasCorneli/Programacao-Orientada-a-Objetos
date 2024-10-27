@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class Eletroposto {
     private int id;
     private String local; // cidade ou estrada
