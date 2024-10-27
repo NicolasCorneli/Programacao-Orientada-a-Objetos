@@ -27,19 +27,18 @@ public class Viagem {
     }
 
     public void realizarViagem() {
-        System.out.println("Iniciando viagem para " + destino + " com " + motorista.getNome());
-        if (veiculo.getAutonomiaAtual() >= distancia) {
-            veiculo.consumirBateria(distancia);
+        System.out.println("Iniciando viagem para " + this.destino + " com " + motorista.getNome());
+        if (veiculo.getAutonomiaAtual() >= this.distancia) {
+            veiculo.consumirBateria(this.distancia);
             System.out.println("Viagem concluída com sucesso.");
         } else {
-            double distanciaRestante = distancia;
-            for (Eletroposto parada : paradasEletroposto) {
-                double autonomiaAntesParada = veiculo.getAutonomiaAtual();
-                if (autonomiaAntesParada < distanciaRestante) {
-                    double kmAntesParada = autonomiaAntesParada;
-                    veiculo.consumirBateria(kmAntesParada);
-                    distanciaRestante -= kmAntesParada;
-                    adicionarParada(parada);
+            double distanciaRestante = this.distancia;
+            for (Eletroposto e : listaEletropostos) {
+                if (veiculo.getAutonomiaAtual() < distanciaRestante) {
+                    veiculo.consumirBateria(veiculo.getAutonomiaAtual());
+                    distanciaRestante -= veiculo.getAutonomiaAtual();
+                    adicionarParada(e);
+                    e.liberarVaga();
                 } else {
                     veiculo.consumirBateria(distanciaRestante);
                     distanciaRestante = 0;
