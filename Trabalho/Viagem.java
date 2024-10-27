@@ -1,11 +1,12 @@
 import java.util.ArrayList;
 
-public class Viagem {
+public class Viagem{
     private Motorista motorista;
     private VeiculosEletricos veiculo;
     private double distancia;
     private String destino;
     private ArrayList<Eletroposto> paradasEletroposto;
+    private ArrayList<Eletroposto> verificaEletroposto;
 
     public Viagem(Motorista motorista, VeiculosEletricos veiculo, double distancia, String destino) {
         this.motorista = motorista;
@@ -26,27 +27,34 @@ public class Viagem {
         }
     }
 
-    public void realizarViagem() {
+    public void realizarViagem(ArrayList<Eletroposto> listaEletropostos) {
         System.out.println("Iniciando viagem para " + this.destino + " com " + motorista.getNome());
         if (veiculo.getAutonomiaAtual() >= this.distancia) {
             veiculo.consumirBateria(this.distancia);
             System.out.println("Viagem concluída com sucesso.");
         } else {
             double distanciaRestante = this.distancia;
-            for (Eletroposto e : listaEletropostos) {
+            double autonomiaRestante = veiculo.getAutonomiaAtual();
+            verificaEletroposto = new ArrayList<>();
+            while (distanciaRestante > 0){
                 if (veiculo.getAutonomiaAtual() < distanciaRestante) {
                     veiculo.consumirBateria(veiculo.getAutonomiaAtual());
-                    distanciaRestante -= veiculo.getAutonomiaAtual();
-                    adicionarParada(e);
-                    e.liberarVaga();
-                } else {
+                    distanciaRestante -= autonomiaRestante;
+                    for (Eletroposto e : listaEletropostos) {
+                        if (verificaEletroposto.contains(e)){
+                            continue;
+                        }else{
+                            adicionarParada(e);
+                            e.liberarVaga();
+                            verificaEletroposto.add(e);
+                            break;
+                        }
+                    }
+                }else {
                     veiculo.consumirBateria(distanciaRestante);
                     distanciaRestante = 0;
                     System.out.println("Viagem concluída com sucesso.");
                 }
-            }
-            if (distanciaRestante > 0) {
-                System.out.println("Não foi possível concluir a viagem devido à falta de autonomia.");
             }
         }
     }
