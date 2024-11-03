@@ -1,14 +1,18 @@
+import java.util.ArrayList;
+
 public class Motorista {
     private String nome;
     private int id;
     private int numeroHabilitacao;
     private String nivelExperiencia;
+    private ArrayList<Viagem> historicoViagens;
 
-    public Motorista(String nome, int id, int numeroHabilitacao, String nivelExperiencia){
+    public Motorista(String nome, int id, int numeroHabilitacao, String nivelExperiencia) {
         this.nome = nome;
         this.id = id;
         this.numeroHabilitacao = numeroHabilitacao;
         setNivelExperiencia(nivelExperiencia);
+        this.historicoViagens = new ArrayList<>();
     }
 
     public String getNome() {
@@ -40,11 +44,31 @@ public class Motorista {
     }
 
     public void setNivelExperiencia(String nivelExperiencia) {
-        String experiencia = nivelExperiencia.toLowerCase();
-        if (experiencia.equals("iniciante") || experiencia.equals("intermediário") || experiencia.equals("avançado")) {
-            this.nivelExperiencia = experiencia;
-        } else {
-            System.out.println("Digite um nível de experiência válido: iniciante, intermediário ou avançado.");
+        this.nivelExperiencia = nivelExperiencia;
+    }
+
+    public ArrayList<Viagem> getHistoricoViagens() {
+        return historicoViagens;
+    }
+
+    public void setHistoricoViagens(ArrayList<Viagem> historicoViagens) {
+        this.historicoViagens = historicoViagens;
+    }
+
+    public void registrarViagem(Viagem viagem) {
+        this.historicoViagens.add(viagem);
+    }
+
+    public void listarViagens() {
+        for (Viagem viagem : historicoViagens) {
+            System.out.println("Motorista: "+ this.nome);
+            System.out.println("Destino: " + viagem.getDestino() + ", Distância: " + viagem.getDistancia() +
+                               ", Veículo: " + viagem.getVeiculo().getModelo());
+            System.out.println("Paradas para recarga:");
+            for (Eletroposto e : viagem.getParadasEletroposto()) {
+                System.out.println("- Eletroposto: " + e.getLocal());
+            }
         }
     }
+
 }
