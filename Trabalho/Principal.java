@@ -14,17 +14,23 @@ public class Principal {
         gestaoFrota.adicionarVeiculo(carroCompacto);
 
         // Criando eletropostos
-        Eletroposto eletroposto1 = new Eletroposto(1, "São Paulo", 10, 2);
-        Eletroposto eletroposto2 = new Eletroposto(2, "Rio de Janeiro", 15, 2);
+        Eletroposto eletroposto1 = new Eletroposto(1, "São Paulo", 10, 6);
+        Eletroposto eletroposto2 = new Eletroposto(2, "Rio de Janeiro", 15, 6);
         gestaoFrota.adicionarEletroposto(eletroposto1);
         gestaoFrota.adicionarEletroposto(eletroposto2);
 
         // Criando e realizando viagem
-        Viagem viagem = new Viagem(motorista1, carroCompacto, 300, "Rio de Janeiro");
+        Viagem viagem = new Viagem(motorista1, carroCompacto, 390, "Rio de Janeiro");
         viagem.realizarViagem(gestaoFrota.getListaEletropostos());
 
         System.out.println(carroCompacto.getAutonomiaAtual());
         gestaoFrota.veiculosComBaixaAutonomia();
         
+        motorista1.listarViagens();
+
+        carroCompacto.consultarHistoricoRecargas();
+
+        gestaoFrota.listarVeiculosParaManutencao();
+
     }
 }
