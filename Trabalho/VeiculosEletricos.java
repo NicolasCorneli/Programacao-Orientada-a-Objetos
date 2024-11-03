@@ -1,21 +1,25 @@
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class VeiculosEletricos {
-    protected int id;
-    protected String marca;
-    protected String modelo;
-    protected LocalDate anoFabricacao;
-    protected double capacidadeBateria; // kWh
-    protected double autonomiaMaxima;   // km
-    protected double autonomiaAtual;
+    private int id;
+    private String marca;
+    private String modelo;
+    private LocalDate anoFabricacao;
+    private double capacidadeBateria;
+    private double autonomiaMaxima;
+    private double autonomiaAtual;
+    private ArrayList<String> historicoRecargas;
 
-    public VeiculosEletricos(int id, String marca, String modelo, LocalDate anoFabricacao, double capacidadeBateria, double autonomiaMaxima){
+    public VeiculosEletricos(int id, String marca, String modelo, LocalDate anoFabricacao, double capacidadeBateria, double autonomiaMaxima) {
         this.id = id;
         this.marca = marca;
-        this.modelo = modelo.toLowerCase();
+        this.modelo = modelo;
         this.anoFabricacao = anoFabricacao;
         this.capacidadeBateria = capacidadeBateria;
-        this.setAutonomiaMaxima(autonomiaMaxima);
+        this.autonomiaMaxima = autonomiaMaxima;
+        this.autonomiaAtual = autonomiaMaxima; 
+        this.historicoRecargas = new ArrayList<>();
     }
 
     public double getAutonomiaAtual() {
@@ -106,6 +110,7 @@ public class VeiculosEletricos {
         if (this.autonomiaAtual > this.autonomiaMaxima) {
             this.autonomiaAtual = this.autonomiaMaxima;
         }
+        historicoRecargas.add("Recarga de " + kWh + " kWh em " + LocalDate.now());
     }
 
     public void consumirBateria(double km) {
@@ -115,5 +120,12 @@ public class VeiculosEletricos {
     public boolean precisaRecarregar() {
         return this.autonomiaAtual <= (this.autonomiaMaxima * 0.2);
     }
-    
+
+    public void consultarHistoricoRecargas() {
+        System.out.println("Histórico de Recargas do carro com ID: " + this.id + " e Modelo: " + this.modelo);
+        for (String recarga : historicoRecargas) {
+            System.out.println(recarga);
+        }
+    }
+
 }
