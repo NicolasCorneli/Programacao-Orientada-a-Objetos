@@ -12,61 +12,59 @@ public class NicolasMarin extends AdvancedRobot {
         setBulletColor(new Color(255, 255, 255));
         setScanColor(new Color(0, 0, 0));
 
-        setTurnRadarRight(360); 
-
         while (true) {
-            setAhead(600);
+            setAhead(1200);
             moving = true;
+            setTurnRight(77);
             waitFor(new TurnCompleteCondition(this));
-            setTurnRight(90); 
-            waitFor(new TurnCompleteCondition(this)); 
-            setTurnLeft(90); 
-            waitFor(new TurnCompleteCondition(this)); 
-
-            if (getVelocity() == 0) {
-                reverseDirection();
-            }
+            setTurnLeft(105);
         }
     }
 
     public void onScannedRobot(ScannedRobotEvent e) {
-        double distance = e.getDistance();  
-        double enemyBearing = e.getBearing(); 
-        double gunTurnAngle = normalizeBearing(enemyBearing); 
-
-        turnGunRight(gunTurnAngle);
+        double distance = e.getDistance();
+        double enemyBearing = e.getBearing();
+        double gunTurnAngle = normalizeBearing(enemyBearing);
+        turnGunRight(gunTurnAngle); 
 
         if (distance <= 100) {
-            fire(3); 
             fire(3);
             fire(3);
-            setBack(75); 
-        } else if (distance <= 200) {
-            fire(2);  
+            fire(3);
+        } else if (distance < 200) {
+            fire(2); 
+            fire(1);
         } else {
             fire(1); 
         }
-
-        setAhead(150);
     }
 
     public void onHitByBullet(HitByBulletEvent e) {
-        reverseDirection(); 
+        reverseDirection();
     }
 
     public void onHitWall(HitWallEvent e) {
-        reverseDirection();  
+        reverseDirection();
     }
 
     public void reverseDirection() {
         if (moving) {
-            setBack(200); 
+            setBack(900);
             moving = false;
         } else {
-            setAhead(200); 
+            setAhead(900);
             moving = true;
         }
     }
+
+    public void onHitRobot(HitRobotEvent e) {
+        if (e.isMyFault()) {
+            setBack(400);
+            setAhead(88);
+            setBack(44);
+        }
+    }
+
     public double normalizeBearing(double angle) {
         while (angle > 180) angle -= 360;
         while (angle < -180) angle += 360;
