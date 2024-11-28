@@ -29,13 +29,8 @@ public class NicolasMarin extends AdvancedRobot {
 
         if (distance <= 100) {
             fire(3);
-            fire(3);
-            fire(3);
-        } else if (distance < 200) {
-            fire(2); 
-            fire(1);
         } else {
-            fire(1); 
+            fire(2); 
         }
     }
 
