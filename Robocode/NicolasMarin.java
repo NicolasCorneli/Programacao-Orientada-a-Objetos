@@ -44,17 +44,17 @@ public class NicolasMarin extends AdvancedRobot {
 
     public void reverseDirection() {
         if (moving) {
-            setBack(900);
+            setBack(100);
             moving = false;
         } else {
-            setAhead(900);
+            setAhead(100);
             moving = true;
         }
     }
 
     public void onHitRobot(HitRobotEvent e) {
         if (e.isMyFault()) {
-            setBack(400);
+            setBack(275);
             setAhead(88);
             setBack(44);
         }
